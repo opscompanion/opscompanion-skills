@@ -89,20 +89,25 @@ fi
 # ── Codex ───────────────────────────────────────────────────────────────────
 
 if [ "$TARGET" = "codex" ]; then
-  CODEX_DIR="$HOME/.codex"
-  mkdir -p "$CODEX_DIR"
-  CODEX_INSTRUCTIONS="$CODEX_DIR/instructions.md"
+  SKILLS_SRC="$INSTALL_DIR/agents/skills"
+  SKILLS_DST="$HOME/.agents/skills"
+  mkdir -p "$SKILLS_DST"
 
-  if [ -f "$CODEX_INSTRUCTIONS" ] && grep -q "# OpsCompanion" "$CODEX_INSTRUCTIONS"; then
-    echo "  Codex instructions already configured."
-  else
-    [ -f "$CODEX_INSTRUCTIONS" ] && echo "" >> "$CODEX_INSTRUCTIONS"
-    cat "$PLUGIN_DIR/agents/codex.md" >> "$CODEX_INSTRUCTIONS"
-  fi
+  for skill in opscompanion-init opscompanion-context opscompanion-recall opscompanion-remember opscompanion-history; do
+    LINK="$SKILLS_DST/$skill"
+    [ -L "$LINK" ] || [ -d "$LINK" ] && rm -rf "$LINK"
+    ln -s "$SKILLS_SRC/$skill" "$LINK"
+  done
 
   echo ""
   echo "  Installed for Codex."
-  echo "  Instructions added to ~/.codex/instructions.md"
+  echo ""
+  echo "  Skills (in ~/.agents/skills/):"
+  echo "    \$opscompanion-init       Set up OpsCompanion"
+  echo "    \$opscompanion-context    Load org/team/user context"
+  echo "    \$opscompanion-recall     Search team memories"
+  echo "    \$opscompanion-remember   Save a decision"
+  echo "    \$opscompanion-history    View session history"
 fi
 
 echo ""

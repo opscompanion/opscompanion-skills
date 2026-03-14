@@ -1,0 +1,6 @@
+interface:
+  display_name: "OpsCompanion Context"
+  short_description: "Load org, team, and user context"
+
+policy:
+  allow_implicit_invocation: true

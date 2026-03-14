@@ -1,0 +1,6 @@
+interface:
+  display_name: "OpsCompanion Setup"
+  short_description: "Configure OpsCompanion CLI and API key"
+
+policy:
+  allow_implicit_invocation: false

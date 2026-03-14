@@ -1,0 +1,6 @@
+interface:
+  display_name: "OpsCompanion History"
+  short_description: "View past session timeline and decisions"
+
+policy:
+  allow_implicit_invocation: true

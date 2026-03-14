@@ -1,0 +1,6 @@
+interface:
+  display_name: "OpsCompanion Remember"
+  short_description: "Save a decision or discovery for the team"
+
+policy:
+  allow_implicit_invocation: true
