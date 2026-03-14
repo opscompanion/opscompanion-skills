@@ -70,7 +70,7 @@ if [ "$TARGET" = "claude" ]; then
   MARKETPLACE_URL="https://github.com/opscompanion/opscompanion-skills"
 
   echo "  Registering marketplace..."
-  claude plugin add-marketplace "$MARKETPLACE_URL" 2>/dev/null || true
+  claude plugin marketplace add "$MARKETPLACE_URL" 2>/dev/null || true
 
   echo "  Installing plugin..."
   claude plugin install opscompanion 2>/dev/null || true

@@ -1,6 +1,5 @@
 {
   "name": "opscompanion-skills",
-  "description": "OpsCompanion agent skills for Claude Code — persistent team memory across sessions",
   "owner": {
     "name": "OpsCompanion",
     "email": "hello@opscompanion.dev"
@@ -9,8 +8,11 @@
     {
       "name": "opscompanion",
       "description": "OpsCompanion tools for Claude Code — org context, team memory, session history",
-      "author": "OpsCompanion",
-      "path": "./plugins/opscompanion",
+      "author": {
+        "name": "OpsCompanion",
+        "email": "hello@opscompanion.dev"
+      },
+      "source": "./plugins/opscompanion",
       "category": "productivity"
     }
   ]
