@@ -1,0 +1,11 @@
+{
+  "name": "opscompanion",
+  "version": "0.1.0",
+  "description": "OpsCompanion tools for Claude Code — persistent team memory, org context, session history",
+  "author": {
+    "name": "OpsCompanion",
+    "email": "hello@opscompanion.dev"
+  },
+  "repository": "https://github.com/opscompanion/opscompanion-skills",
+  "license": "MIT"
+}
