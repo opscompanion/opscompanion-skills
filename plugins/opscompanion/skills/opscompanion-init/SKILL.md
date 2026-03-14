@@ -39,26 +39,31 @@ This writes config to `~/.config/opscompanion/config.json`.
 
 For development/demo mode, the user can use `mock-key` as the API key — this enables full mock responses without a real backend.
 
-## Post-Setup
+## Install for Claude Code
 
-After init succeeds, generate the Claude Code hook configuration:
+After init succeeds, run the installer to set up skills, hooks, and plugin registration in one step:
 
 ```bash
-opc hooks
+opc install --agent claude
 ```
 
-This writes `.claude/settings.local.json` in the current project with hooks for:
-- **PreToolUse** — captures every tool invocation before execution
-- **PostToolUse** — captures every tool result
-- **SessionStart** — loads org/team/user context on startup
-- **Stop** — creates final checkpoint and extracts memories on session end
+This will:
+- Download/update the OpsCompanion skills repository
+- Register the plugin marketplace and install the plugin
+- Write `.claude/settings.local.json` with hooks for:
+  - **PreToolUse** — captures every tool invocation before execution
+  - **PostToolUse** — captures every tool result
+  - **SessionStart** — loads org/team/user context on startup
+  - **Stop** — creates final checkpoint and extracts memories on session end
+
+All generated hooks include `--agent claude` so opc knows which runtime is calling it.
 
 ## Verification
 
 Verify the setup by loading context:
 
 ```bash
-opc context
+opc --agent claude context
 ```
 
 If this prints org/team/user details, the setup is complete.
@@ -67,6 +72,6 @@ If this prints org/team/user details, the setup is complete.
 
 After completing setup:
 - Confirm which config file was written
-- Confirm hooks were installed
-- Show the org name from `opc context` to prove it works
+- Confirm hooks and plugin were installed
+- Show the org name from `opc --agent claude context` to prove it works
 - Remind the user to restart their Claude Code session for hooks to take effect

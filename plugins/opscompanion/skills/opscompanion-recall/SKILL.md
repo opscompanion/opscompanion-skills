@@ -16,7 +16,7 @@ You are searching the team's shared knowledge base for past decisions, discoveri
 
 Run:
 ```bash
-opc recall "<query>"
+opc --agent claude recall "<query>"
 ```
 
 Where `<query>` is the user's search terms. Extract the core topic from the user's question.
@@ -48,7 +48,7 @@ Each result includes:
 2. Synthesize related results into a coherent answer
 3. Cite the source: who captured it and when
 4. Flag if results are stale (more than 30 days old)
-5. If no results found, say so clearly and suggest the user save the decision with `opc remember`
+5. If no results found, say so clearly and suggest the user save the decision with `opc --agent claude remember`
 
 ## Example Response
 
@@ -57,4 +57,4 @@ Each result includes:
 
 ## Error Handling
 
-If `opc recall` fails with a config error, invoke the `opscompanion-init` skill to set up the CLI first.
+If `opc --agent claude recall` fails with a config error, invoke the `opscompanion-init` skill to set up the CLI first.

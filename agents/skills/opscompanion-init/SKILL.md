@@ -5,7 +5,7 @@ description: Set up OpsCompanion with your API key and org configuration. Use wh
 
 # OpsCompanion Setup
 
-You are helping the user configure OpsCompanion (`opc`) for their environment.
+You are helping the user configure OpsCompanion (`opc`) for their Codex environment.
 
 ## Preflight
 
@@ -31,12 +31,27 @@ This writes config to `~/.config/opscompanion/config.json`.
 
 For development/demo mode, the user can use `mock-key` as the API key — this enables full mock responses without a real backend.
 
+## Install for Codex
+
+After init succeeds, run the installer to set up skills and hooks in one step:
+
+```bash
+opc install --agent codex
+```
+
+This will:
+- Download/update the OpsCompanion skills repository
+- Symlink skills into `~/.agents/skills/`
+- Write `.codex/hooks.json` with hooks for session lifecycle and tool capture
+
+All generated hooks include `--agent codex` so opc knows which runtime is calling it.
+
 ## Verification
 
 Verify the setup by loading context:
 
 ```bash
-opc context
+opc --agent codex context
 ```
 
 If this prints org/team/user details, the setup is complete.
@@ -45,4 +60,5 @@ If this prints org/team/user details, the setup is complete.
 
 After completing setup:
 - Confirm which config file was written
-- Show the org name from `opc context` to prove it works
+- Confirm skills and hooks were installed
+- Show the org name from `opc --agent codex context` to prove it works

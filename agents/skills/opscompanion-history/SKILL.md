@@ -11,7 +11,7 @@ Retrieve the team's agent session history — a timeline of commits, checkpoints
 
 Run:
 ```bash
-opc history
+opc --agent codex history
 ```
 
 ## Understanding the Output
@@ -37,4 +37,4 @@ Decisions extracted from each session, grouped by session ID.
 
 ## Error Handling
 
-If `opc history` fails with a config error, run `$opscompanion-init` to set up the CLI first.
+If `opc --agent codex history` fails with a config error, run `$opscompanion-init` to set up the CLI first.

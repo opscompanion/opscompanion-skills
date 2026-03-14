@@ -16,7 +16,7 @@ You are retrieving the team's agent session history — a timeline of commits, c
 
 Run:
 ```bash
-opc history
+opc --agent claude history
 ```
 
 ## Understanding the Output
@@ -51,4 +51,4 @@ Decisions extracted from each session, grouped by session ID.
 
 ## Error Handling
 
-If `opc history` fails with a config error, invoke the `opscompanion-init` skill to set up the CLI first.
+If `opc --agent claude history` fails with a config error, invoke the `opscompanion-init` skill to set up the CLI first.

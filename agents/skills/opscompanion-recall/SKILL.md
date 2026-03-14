@@ -11,7 +11,7 @@ Search the team's shared knowledge base for past decisions, discoveries, and con
 
 Run:
 ```bash
-opc recall "<query>"
+opc --agent codex recall "<query>"
 ```
 
 Where `<query>` is the user's search terms. Extract the core topic from the user's question.
@@ -43,8 +43,8 @@ Each result includes:
 2. Synthesize related results into a coherent answer
 3. Cite the source: who captured it and when
 4. Flag if results are stale (more than 30 days old)
-5. If no results found, say so clearly and suggest the user save the decision with `opc remember`
+5. If no results found, say so clearly and suggest the user save the decision with `opc --agent codex remember`
 
 ## Error Handling
 
-If `opc recall` fails with a config error, run `$opscompanion-init` to set up the CLI first.
+If `opc --agent codex recall` fails with a config error, run `$opscompanion-init` to set up the CLI first.

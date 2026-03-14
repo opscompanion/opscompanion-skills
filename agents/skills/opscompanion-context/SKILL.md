@@ -11,7 +11,7 @@ Load organizational context from OpsCompanion to ground this conversation with t
 
 Run:
 ```bash
-opc context
+opc --agent codex context
 ```
 
 ## What This Returns
@@ -33,7 +33,7 @@ After loading context, use it to:
 
 ## Error Handling
 
-If `opc context` fails with a config error, run `$opscompanion-init` to set up the CLI first.
+If `opc --agent codex context` fails with a config error, run `$opscompanion-init` to set up the CLI first.
 
 ## Response Format
 

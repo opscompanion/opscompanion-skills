@@ -16,7 +16,7 @@ You are saving a decision, discovery, or piece of context to the team's shared k
 
 Run:
 ```bash
-opc remember "<content>" --tags "<tag1>,<tag2>,<tag3>"
+opc --agent claude remember "<content>" --tags "<tag1>,<tag2>,<tag3>"
 ```
 
 ### Crafting Good Memories
@@ -51,8 +51,8 @@ Always confirm with the user before proactively saving.
 After saving:
 - Confirm what was saved (paraphrase, don't repeat verbatim)
 - Show the tags assigned
-- Mention that teammates can find this with `opc recall`
+- Mention that teammates can find this with `opc recall` (from any agent)
 
 ## Error Handling
 
-If `opc remember` fails with a config error, invoke the `opscompanion-init` skill to set up the CLI first.
+If `opc --agent claude remember` fails with a config error, invoke the `opscompanion-init` skill to set up the CLI first.

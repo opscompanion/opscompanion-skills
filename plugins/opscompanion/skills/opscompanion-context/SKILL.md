@@ -16,7 +16,7 @@ You are loading organizational context from OpsCompanion to ground this conversa
 
 Run:
 ```bash
-opc context
+opc --agent claude context
 ```
 
 ## What This Returns
@@ -40,7 +40,7 @@ After loading context, use it to:
 
 ## Error Handling
 
-If `opc context` fails with a config error, invoke the `opscompanion-init` skill to set up the CLI first.
+If `opc --agent claude context` fails with a config error, invoke the `opscompanion-init` skill to set up the CLI first.
 
 ## Response Format
 
