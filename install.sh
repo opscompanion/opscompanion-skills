@@ -67,25 +67,13 @@ fi
 # ── Claude Code ─────────────────────────────────────────────────────────────
 
 if [ "$TARGET" = "claude" ]; then
-  CLAUDE_PLUGINS_DIR="$HOME/.claude/plugins"
-  mkdir -p "$CLAUDE_PLUGINS_DIR"
-  LINK="$CLAUDE_PLUGINS_DIR/opscompanion"
-  [ -L "$LINK" ] || [ -d "$LINK" ] && rm -rf "$LINK"
-  ln -s "$PLUGIN_DIR" "$LINK"
+  MARKETPLACE_URL="https://github.com/opscompanion/opscompanion-skills"
 
-  SETTINGS_FILE="$HOME/.claude/settings.json"
-  if [ -f "$SETTINGS_FILE" ]; then
-    if ! grep -q '"opscompanion"' "$SETTINGS_FILE"; then
-      python3 -c "
-import json
-with open('$SETTINGS_FILE') as f: s = json.load(f)
-s.setdefault('enabledPlugins', {})['opscompanion'] = True
-with open('$SETTINGS_FILE', 'w') as f: json.dump(s, f, indent=2)
-"
-    fi
-  else
-    echo '{"enabledPlugins":{"opscompanion":true}}' > "$SETTINGS_FILE"
-  fi
+  echo "  Registering marketplace..."
+  claude plugin add-marketplace "$MARKETPLACE_URL" 2>/dev/null || true
+
+  echo "  Installing plugin..."
+  claude plugin install opscompanion 2>/dev/null || true
 
   echo ""
   echo "  Installed for Claude Code."
