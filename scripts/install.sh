@@ -61,6 +61,24 @@ if [ "$TARGET" = "claude" ]; then
   [ -L "$LINK" ] || [ -d "$LINK" ] && rm -rf "$LINK"
   ln -s "$PLUGIN_DIR" "$LINK"
 
+  # Enable plugin in settings.json
+  SETTINGS_FILE="$HOME/.claude/settings.json"
+  if [ -f "$SETTINGS_FILE" ]; then
+    # Add opscompanion to enabledPlugins if not already there
+    if ! grep -q '"opscompanion"' "$SETTINGS_FILE"; then
+      python3 -c "
+import json
+with open('$SETTINGS_FILE') as f: s = json.load(f)
+s.setdefault('enabledPlugins', {})['opscompanion'] = True
+with open('$SETTINGS_FILE', 'w') as f: json.dump(s, f, indent=2)
+"
+    fi
+  else
+    echo '{"enabledPlugins":{"opscompanion":true}}' | python3 -c "
+import json,sys; print(json.dumps(json.load(sys.stdin), indent=2))
+" > "$SETTINGS_FILE"
+  fi
+
   echo ""
   echo "  Installed for Claude Code."
   echo ""
