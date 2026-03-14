@@ -1,29 +1,34 @@
 #!/usr/bin/env bash
-# Install OpsCompanion skills plugin for Claude Code.
-# Usage: bash scripts/install.sh
+# Install OpsCompanion skills.
+# Usage:
+#   bash scripts/install.sh           # auto-detect agent
+#   bash scripts/install.sh claude    # Claude Code only
+#   bash scripts/install.sh codex     # Codex only
 
 set -euo pipefail
 
-PLUGIN_DIR="$(cd "$(dirname "$0")/.." && pwd)/plugins/opscompanion"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
+REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+PLUGIN_DIR="$REPO_DIR/plugins/opscompanion"
+TARGET="${1:-}"
 
-echo "Installing OpsCompanion skills plugin..."
-echo "  Plugin: $PLUGIN_DIR"
+echo ""
+echo "  opscompanion skills installer"
+echo ""
 
-# 1. Install opc CLI via Homebrew if not present
-if ! command -v opc &>/dev/null; then
-  echo ""
-  echo "opc CLI not found. Installing via Homebrew..."
+# ── Install opc CLI ─────────────────────────────────────────────────────────
+
+if command -v opc &>/dev/null; then
+  echo "  opc: $(command -v opc)"
+else
+  echo "  Installing opc via Homebrew..."
   brew install opscompanion/opc/opc
 fi
 
-echo "  opc:    $(command -v opc)"
-echo "  ver:    $(opc version 2>/dev/null || echo 'unknown')"
+# ── Mock config if needed ───────────────────────────────────────────────────
 
-# 2. Enable mock mode if no real config exists
 CONFIG_FILE="$HOME/.config/opscompanion/config.json"
 if [ ! -f "$CONFIG_FILE" ]; then
-  echo ""
-  echo "No config found. Setting up mock mode..."
   mkdir -p "$(dirname "$CONFIG_FILE")"
   cat > "$CONFIG_FILE" <<'EOF'
 {
@@ -31,33 +36,61 @@ if [ ! -f "$CONFIG_FILE" ]; then
   "api_key": "mock-key"
 }
 EOF
-  echo "  Config: $CONFIG_FILE (mock mode)"
-else
-  echo "  Config: $CONFIG_FILE (exists)"
+  echo "  config: mock mode (no API key needed)"
 fi
 
-# 3. Install plugin for Claude Code
-CLAUDE_PLUGINS_DIR="$HOME/.claude/plugins"
-mkdir -p "$CLAUDE_PLUGINS_DIR"
+# ── Detect or use specified target ──────────────────────────────────────────
 
-LINK="$CLAUDE_PLUGINS_DIR/opscompanion"
-if [ -L "$LINK" ] || [ -d "$LINK" ]; then
-  rm -rf "$LINK"
+if [ -z "$TARGET" ]; then
+  if command -v claude &>/dev/null; then
+    TARGET="claude"
+  elif command -v codex &>/dev/null; then
+    TARGET="codex"
+  else
+    echo "  No agent found. Specify: bash scripts/install.sh [claude|codex]"
+    exit 1
+  fi
 fi
-ln -s "$PLUGIN_DIR" "$LINK"
-echo "  Linked: $LINK -> $PLUGIN_DIR"
 
-# 4. Verify
-echo ""
-echo "Verifying..."
-opc context >/dev/null 2>&1 && echo "  opc context: OK" || echo "  opc context: failed (run 'opc init' to configure)"
+# ── Claude Code ─────────────────────────────────────────────────────────────
+
+if [ "$TARGET" = "claude" ]; then
+  CLAUDE_PLUGINS_DIR="$HOME/.claude/plugins"
+  mkdir -p "$CLAUDE_PLUGINS_DIR"
+  LINK="$CLAUDE_PLUGINS_DIR/opscompanion"
+  [ -L "$LINK" ] || [ -d "$LINK" ] && rm -rf "$LINK"
+  ln -s "$PLUGIN_DIR" "$LINK"
+
+  echo ""
+  echo "  Installed for Claude Code."
+  echo ""
+  echo "  Skills:"
+  echo "    /opscompanion-init       Set up OpsCompanion"
+  echo "    /opscompanion-context    Load org/team/user context"
+  echo "    /opscompanion-recall     Search team memories"
+  echo "    /opscompanion-remember   Save a decision"
+  echo "    /opscompanion-history    View session history"
+fi
+
+# ── Codex ───────────────────────────────────────────────────────────────────
+
+if [ "$TARGET" = "codex" ]; then
+  CODEX_DIR="$HOME/.codex"
+  mkdir -p "$CODEX_DIR"
+  CODEX_INSTRUCTIONS="$CODEX_DIR/instructions.md"
+
+  if [ -f "$CODEX_INSTRUCTIONS" ] && grep -q "# OpsCompanion" "$CODEX_INSTRUCTIONS"; then
+    echo "  Codex instructions already configured."
+  else
+    [ -f "$CODEX_INSTRUCTIONS" ] && echo "" >> "$CODEX_INSTRUCTIONS"
+    cat "$PLUGIN_DIR/agents/codex.md" >> "$CODEX_INSTRUCTIONS"
+  fi
+
+  echo ""
+  echo "  Installed for Codex."
+  echo "  Instructions added to ~/.codex/instructions.md"
+fi
 
 echo ""
-echo "Done. Skills available in Claude Code:"
-echo "  /opscompanion-init      Set up OpsCompanion"
-echo "  /opscompanion-context   Load org/team/user context"
-echo "  /opscompanion-recall    Search team memories"
-echo "  /opscompanion-remember  Save a decision"
-echo "  /opscompanion-history   View session history"
+echo "  Restart your agent for changes to take effect."
 echo ""
-echo "Restart Claude Code for the plugin to take effect."
