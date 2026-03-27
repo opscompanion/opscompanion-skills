@@ -2,7 +2,7 @@
   "name": "opscompanion-skills",
   "owner": {
     "name": "OpsCompanion",
-    "email": "hello@opscompanion.dev"
+    "email": "founders@opscompanion.ai"
   },
   "plugins": [
     {
@@ -10,7 +10,7 @@
       "description": "OpsCompanion tools for Claude Code — org context, team memory, session history",
       "author": {
         "name": "OpsCompanion",
-        "email": "hello@opscompanion.dev"
+        "email": "founders@opscompanion.ai"
       },
       "source": "./plugins/opscompanion",
       "category": "productivity"

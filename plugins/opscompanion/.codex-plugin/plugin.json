@@ -1,0 +1,32 @@
+{
+  "name": "opscompanion",
+  "version": "0.1.0",
+  "description": "OpsCompanion tools for Codex — persistent team memory, org context, session history",
+  "author": {
+    "name": "OpsCompanion",
+    "email": "founders@opscompanion.ai",
+    "url": "https://opscompanion.ai"
+  },
+  "homepage": "https://opscompanion.ai",
+  "repository": "https://github.com/opscompanion/opscompanion-skills",
+  "license": "MIT",
+  "keywords": ["devops", "memory", "context", "team-knowledge", "infrastructure"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "OpsCompanion",
+    "shortDescription": "Persistent team memory and org context for Codex",
+    "longDescription": "OpsCompanion gives Codex persistent team memory and organizational context. Store decisions, discoveries, and knowledge that persist across sessions and teammates. Load org, integration, and workspace context to ground every conversation with your team's actual infrastructure.",
+    "developerName": "OpsCompanion",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://opscompanion.ai",
+    "privacyPolicyURL": "https://opscompanion.ai/privacy",
+    "termsOfServiceURL": "https://opscompanion.ai/terms",
+    "defaultPrompt": [
+      "Load my org context with OpsCompanion",
+      "Remember that we decided to use Redis for rate limiting",
+      "What did we decide about the auth migration?"
+    ],
+    "brandColor": "#6366F1"
+  }
+}

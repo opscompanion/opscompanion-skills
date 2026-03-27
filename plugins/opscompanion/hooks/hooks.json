@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/auto-approve-opc.sh"
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/auto-approve-opc.js"
           }
         ]
       }
