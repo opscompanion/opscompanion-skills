@@ -4,8 +4,12 @@
   "description": "OpsCompanion tools for Claude Code — persistent team memory, org context, session history",
   "author": {
     "name": "OpsCompanion",
-    "email": "hello@opscompanion.dev"
+    "email": "founders@opscompanion.ai",
+    "url": "https://opscompanion.ai"
   },
+  "homepage": "https://opscompanion.ai",
   "repository": "https://github.com/opscompanion/opscompanion-skills",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": ["devops", "memory", "context", "team-knowledge", "infrastructure"],
+  "skills": "./skills/"
 }
