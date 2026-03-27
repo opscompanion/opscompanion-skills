@@ -23,19 +23,18 @@ opc install --agent codex
 | Skill | Trigger | What it does |
 |-------|---------|-------------|
 | `opscompanion-init` | "set up opscompanion" | Configure API key, install hooks |
-| `opscompanion-context` | "show my org context" | Load org/team/user context |
-| `opscompanion-recall` | "what did we decide about..." | Search team knowledge base |
-| `opscompanion-remember` | "remember this decision" | Save decisions for future recall |
-| `opscompanion-history` | "what happened last session" | View session timeline + decisions |
+| `opscompanion-context` | "show my org context" | Load org/user/integration context |
+| `opscompanion-search` | "what did we decide about..." | Search organization knowledge and user memory |
+| `opscompanion-remember` | "remember this decision" | Save decisions for future search |
 
 ## The `--agent` Contract
 
 Every `opc` command accepts `--agent <name>` to normalize behavior across runtimes:
 
 ```bash
-opc --agent claude recall "auth migration"   # from Claude Code
-opc --agent codex  recall "auth migration"   # from Codex
-opc recall "auth migration"                  # human mode (auto-detect)
+opc --agent claude search "auth migration"   # from Claude Code
+opc --agent codex  search "auth migration"   # from Codex
+opc search "auth migration"                  # human mode (auto-detect)
 ```
 
 The `--agent` flag controls:
@@ -64,14 +63,12 @@ opscompanion-skills/
 │   └── skills/
 │       ├── opscompanion-init/    # Setup skill
 │       ├── opscompanion-context/ # Org context skill
-│       ├── opscompanion-recall/  # Memory search skill
-│       ├── opscompanion-remember/# Memory save skill
-│       └── opscompanion-history/ # Session history skill
+│       ├── opscompanion-search/  # Knowledge search skill
+│       └── opscompanion-remember/# Memory save skill
 ├── agents/skills/                # Codex agent skills
 │   ├── opscompanion-init/
 │   ├── opscompanion-context/
-│   ├── opscompanion-recall/
-│   ├── opscompanion-remember/
-│   └── opscompanion-history/
+│   ├── opscompanion-search/
+│   └── opscompanion-remember/
 └── README.md
 ```

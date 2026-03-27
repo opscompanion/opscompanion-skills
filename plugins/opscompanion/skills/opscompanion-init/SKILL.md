@@ -53,8 +53,6 @@ This will:
 - Write `.claude/settings.local.json` with hooks for:
   - **PreToolUse** — captures every tool invocation before execution
   - **PostToolUse** — captures every tool result
-  - **SessionStart** — loads org/team/user context on startup
-  - **Stop** — creates final checkpoint and extracts memories on session end
 
 All generated hooks include `--agent claude` so opc knows which runtime is calling it.
 
@@ -66,7 +64,7 @@ Verify the setup by loading context:
 opc --agent claude context
 ```
 
-If this prints org/team/user details, the setup is complete.
+If this prints org/user/integration details, the setup is complete.
 
 ## Response Format
 
