@@ -1,6 +1,6 @@
 ---
 name: opscompanion-context
-description: Load org, team, user, and environment context to ground the conversation. Use at session start or when the user asks about their org/team/environment context.
+description: Load org, user, integration, and workspace context to ground the conversation. Use at session start or when the user asks about their org/team/environment context.
 ---
 
 # OpsCompanion Context
@@ -14,14 +14,27 @@ Run:
 opc --agent codex context
 ```
 
+### Flags
+
+| Flag | Description |
+|------|-------------|
+| `--full-memory` | Show full memory bodies instead of excerpts |
+| `--computed-links` | Include computed workspace links |
+| `-v, --verbose` | Show detailed nodes and integration entries |
+
+For a deeper context load with full memory, run:
+```bash
+opc --agent codex context --full-memory
+```
+
 ## What This Returns
 
 | Section | Contains |
 |---------|----------|
-| **Org** | Cloud provider, IaC tool, CI/CD pipeline, observability stack, secrets management, incident process |
-| **Team** | Owned services, on-call rotation, deployment cadence, active projects |
-| **User** | Role, preferences, recent work, editor, shell |
-| **Workspace** | Current branch, working directory |
+| **Identity** | Organization name, user name, email, public IDs |
+| **Integrations** | Configured cloud providers and services |
+| **Workspaces** | Workspace names, node counts, providers |
+| **Memory** | Organization and user memory (excerpts by default, full with `--full-memory`) |
 
 ## How to Use the Context
 

@@ -46,7 +46,7 @@ Always confirm with the user before proactively saving.
 After saving:
 - Confirm what was saved (paraphrase, don't repeat verbatim)
 - Show the tags assigned
-- Mention that teammates can find this with `opc recall` (from any agent)
+- Mention that teammates can find this with `opc search` (from any agent)
 
 ## Error Handling
 

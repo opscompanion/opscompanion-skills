@@ -1,5 +1,5 @@
 interface:
-  display_name: "OpsCompanion Recall"
+  display_name: "OpsCompanion Search"
   short_description: "Search team decisions and knowledge"
 
 policy:

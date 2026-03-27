@@ -1,6 +1,6 @@
 ---
 name: opscompanion-context
-description: Load org, team, user, and environment memory to ground the conversation. Use at session start or when the user asks about their org/team/environment context.
+description: Load org, user, integration, and workspace context to ground the conversation. Use at session start or when the user asks about their org/team/environment context.
 user_invocable: true
 tools:
   - name: Bash
@@ -19,16 +19,29 @@ Run:
 opc --agent claude context
 ```
 
+### Flags
+
+| Flag | Description |
+|------|-------------|
+| `--full-memory` | Show full memory bodies instead of excerpts |
+| `--computed-links` | Include computed workspace links |
+| `-v, --verbose` | Show detailed nodes and integration entries |
+
+For a deeper context load with full memory, run:
+```bash
+opc --agent claude context --full-memory
+```
+
 ## What This Returns
 
-The context command returns structured markdown with four sections:
+The context command returns structured markdown with these sections:
 
 | Section | Contains |
 |---------|----------|
-| **Org** | Cloud provider, IaC tool, CI/CD pipeline, observability stack, secrets management, incident process |
-| **Team** | Owned services, on-call rotation, deployment cadence, active projects |
-| **User** | Role, preferences, recent work, editor, shell |
-| **Workspace** | Current branch, working directory |
+| **Identity** | Organization name, user name, email, public IDs |
+| **Integrations** | Configured cloud providers and services |
+| **Workspaces** | Workspace names, node counts, providers |
+| **Memory** | Organization and user memory (excerpts by default, full with `--full-memory`) |
 
 ## How to Use the Context
 
@@ -46,4 +59,4 @@ If `opc --agent claude context` fails with a config error, invoke the `opscompan
 
 Present the context as a brief summary, not a raw dump. Highlight what's most relevant to the current conversation. Example:
 
-> You're on **platform-eng** at **acme-corp**. Your team owns api-gateway, auth-service, config-service, and internal-tools. Active projects include the JWT→PASETO migration and K8s 1.28→1.30 upgrade.
+> You're **Kenneth Eversole** at **OpsCompanion**. Your org has 10 integrations across AWS, Azure, GCP, and others. Two workspaces: dev (Azure) and Production (multi-cloud, 24 nodes).

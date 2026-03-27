@@ -42,7 +42,9 @@ opc install --agent codex
 This will:
 - Download/update the OpsCompanion skills repository
 - Symlink skills into `~/.agents/skills/`
-- Write `.codex/hooks.json` with hooks for session lifecycle and tool capture
+- Write `.codex/hooks.json` with hooks for:
+  - **PreToolUse** — captures every tool invocation before execution
+  - **PostToolUse** — captures every tool result
 
 All generated hooks include `--agent codex` so opc knows which runtime is calling it.
 
@@ -54,7 +56,7 @@ Verify the setup by loading context:
 opc --agent codex context
 ```
 
-If this prints org/team/user details, the setup is complete.
+If this prints org/user/integration details, the setup is complete.
 
 ## Response Format
 
