@@ -1,6 +1,17 @@
 {
-  "description": "Auto-approve OpsCompanion CLI calls",
+  "description": "OpsCompanion hooks — load context on session start, auto-approve opc CLI calls",
   "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "opc context --full-memory"
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Bash",
