@@ -58,6 +58,14 @@ opc --agent codex context
 
 If this prints org/user/integration details, the setup is complete.
 
+After setup, the main observability commands are:
+
+```bash
+opc --agent codex logs "timeout" --service api --since 1h
+opc --agent codex logs tail --service vercel-app --tui
+opc --agent codex traces "checkout" --service api --since 6h
+```
+
 ## Response Format
 
 After completing setup:

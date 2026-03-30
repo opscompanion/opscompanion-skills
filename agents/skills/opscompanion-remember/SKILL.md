@@ -41,6 +41,8 @@ Save a memory when you observe:
 
 Always confirm with the user before proactively saving.
 
+If the user is still investigating a live issue, gather the runtime evidence first with `$opscompanion-observability` and only save the resulting conclusion once it is clear.
+
 ## Response Format
 
 After saving:
