@@ -1,0 +1,6 @@
+interface:
+  display_name: "OpsCompanion Observability"
+  short_description: "Search logs, traces, and live telemetry"
+
+policy:
+  allow_implicit_invocation: true

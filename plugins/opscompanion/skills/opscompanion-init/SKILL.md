@@ -66,6 +66,14 @@ opc --agent claude context
 
 If this prints org/user/integration details, the setup is complete.
 
+After setup, the main observability commands are:
+
+```bash
+opc --agent claude logs "timeout" --service api --since 1h
+opc --agent claude logs tail --service vercel-app --tui
+opc --agent claude traces "checkout" --service api --since 6h
+```
+
 ## Response Format
 
 After completing setup:

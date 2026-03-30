@@ -12,6 +12,10 @@ tools:
 
 You are searching the team's shared knowledge base for past decisions, discoveries, and context.
 
+Use this skill for stored memory and team knowledge.
+
+If the user is asking about live or recent runtime behavior, use `opscompanion-observability` instead.
+
 ## Action
 
 Run:
@@ -41,6 +45,7 @@ Where `<query>` is the user's search terms. Extract the core topic from the user
 | "why did we pick Redis?" | `"Redis"` |
 
 Use specific, topic-focused queries. For broader searches, use `--scope both` to include user memory.
+Do not use `opc search` for logs, traces, or live incident tailing.
 
 ### Examples
 
