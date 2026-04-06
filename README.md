@@ -27,6 +27,7 @@ opc install --agent codex
 | `opscompanion-search` | "what did we decide about..." | Search organization knowledge and user memory |
 | `opscompanion-observability` | "what errors are we seeing?" | Search logs, traces, and run live tails |
 | `opscompanion-remember` | "remember this decision" | Save decisions for future search |
+| `logging` | "set up logging/tracing" | Configure OpenTelemetry logs and traces to send to OpsCompanion |
 
 ## The `--agent` Contract
 
@@ -66,12 +67,14 @@ opscompanion-skills/
 │       ├── opscompanion-context/ # Org context skill
 │       ├── opscompanion-search/  # Knowledge search skill
 │       ├── opscompanion-observability/ # Logs, traces, and live tail skill
-│       └── opscompanion-remember/# Memory save skill
+│       ├── opscompanion-remember/# Memory save skill
+│       └── logging/              # Logging and tracing setup skill
 ├── agents/skills/                # Codex agent skills
 │   ├── opscompanion-init/
 │   ├── opscompanion-context/
 │   ├── opscompanion-search/
 │   ├── opscompanion-observability/
-│   └── opscompanion-remember/
+│   ├── opscompanion-remember/
+│   └── logging/
 └── README.md
 ```

@@ -1,0 +1,6 @@
+interface:
+  display_name: "OpsCompanion Logging"
+  short_description: "Set up OTLP logs and traces for OpsCompanion"
+
+policy:
+  allow_implicit_invocation: true
